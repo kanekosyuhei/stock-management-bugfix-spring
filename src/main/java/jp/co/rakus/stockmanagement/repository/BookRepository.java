@@ -1,9 +1,7 @@
 package jp.co.rakus.stockmanagement.repository;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
-
-import jp.co.rakus.stockmanagement.domain.Book;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
@@ -12,6 +10,8 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+
+import jp.co.rakus.stockmanagement.domain.Book;
 
 /**
  * booksテーブル操作用のリポジトリクラス.
@@ -29,7 +29,8 @@ public class BookRepository {
 		String publisher = rs.getString("publisher");
 		Integer price = rs.getInt("price");
 		String isbncode = rs.getString("isbncode");
-		Date saledate = rs.getDate("saledate");
+		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy年MM月dd日");
+		String saledate = sdf1.format(rs.getDate("saledate"));
 		String explanation = rs.getString("explanation");
 		String image = rs.getString("image");
 		Integer stock = rs.getInt("stock");
