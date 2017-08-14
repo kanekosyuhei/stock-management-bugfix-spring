@@ -1,6 +1,6 @@
 package jp.co.rakus.stockmanagement.repository;
 
-import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +29,7 @@ public class BookRepository {
 		String publisher = rs.getString("publisher");
 		Integer price = rs.getInt("price");
 		String isbncode = rs.getString("isbncode");
-		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy年MM月dd日");
-		String saledate = sdf1.format(rs.getDate("saledate"));
+		Date saledate = rs.getDate("saledate");
 		String explanation = rs.getString("explanation");
 		String image = rs.getString("image");
 		Integer stock = rs.getInt("stock");

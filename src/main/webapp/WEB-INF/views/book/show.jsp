@@ -1,6 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ include file="../common/common.jsp"  %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <body>
 <div class="container">
 	<c:out value="${member.name}"/>さん　こんにちは！<br>
@@ -55,7 +54,7 @@
 			      発売日
 			    </th>
 			    <td>
-			      <c:out value="${book.saledate}"/>
+			      <fmt:formatDate value="${book.saledate}" pattern="yyyy年MM月dd日" />
 			    </td>
 			  </tr>
 			  <tr>

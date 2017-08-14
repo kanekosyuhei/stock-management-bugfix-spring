@@ -1,5 +1,7 @@
 package jp.co.rakus.stockmanagement.domain;
 
+import java.util.Date;
+
 /**
  * 書籍情報を保持するエンティティ.
  * @author rakus
@@ -19,7 +21,7 @@ public class Book {
 	/** ISBNコード */
 	private String isbncode;
 	/** 発売日 */
-	private String saledate;
+	private Date saledate;
 	/** 説明 */
 	private String explanation;
 	/** 画像 */
@@ -27,7 +29,7 @@ public class Book {
 	/** 在庫数 */
 	private Integer stock;
 	public Book() {}
-	public Book(Integer id, String name, String author, String publisher, int price, String isbncode, String saledate,
+	public Book(Integer id, String name, String author, String publisher, int price, String isbncode, Date saledate,
 			String explanation, String image, Integer stock) {
 		super();
 		this.id = id;
@@ -77,10 +79,10 @@ public class Book {
 	public void setIsbncode(String isbncode) {
 		this.isbncode = isbncode;
 	}
-	public String getSaledate() {
+	public Date getSaledate() {
 		return saledate;
 	}
-	public void setSaledate(String saledate) {
+	public void setSaledate(Date saledate) {
 		this.saledate = saledate;
 	}
 	public String getExplanation() {
