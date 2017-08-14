@@ -41,7 +41,7 @@ public class BookRepository {
 	
 	public List<Book> findAll() {
 		List<Book> books = jdbcTemplate.query(
-				"SELECT id,name,author,publisher,price,isbncode,saledate,explanation,image,stock FROM books", 
+				"SELECT id,name,author,publisher,price,isbncode,saledate,explanation,image,stock FROM books ORDER BY saledate", 
 				BOOK_ROW_MAPPER);
 		return books;
 	}
@@ -50,7 +50,7 @@ public class BookRepository {
 		SqlParameterSource param = new MapSqlParameterSource()
 				.addValue("id",id);
 		Book book = jdbcTemplate.queryForObject(
-				"SELECT id,name,author,publisher,price,isbncode,saledate,explanation,image,stock FROM books WHERE id=:id ORDER BY id", 
+				"SELECT id,name,author,publisher,price,isbncode,saledate,explanation,image,stock FROM books WHERE id=:id", 
 				param, 
 				BOOK_ROW_MAPPER);
 		return book;
