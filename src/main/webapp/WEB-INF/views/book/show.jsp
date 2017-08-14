@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ include file="../common/common.jsp"  %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <body>
 <div class="container">
 	<c:out value="${member.name}"/>さん　こんにちは！<br>
@@ -38,7 +39,7 @@
 			      価格
 			    </th>
 			    <td>
-			      <c:out value="${book.price}"/>円
+			    <fmt:formatNumber value="${book.price}" pattern="###,###" />円
 			    </td>
 			  </tr>
 			  <tr>
