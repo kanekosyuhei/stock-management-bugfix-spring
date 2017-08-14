@@ -87,6 +87,9 @@
 			    </td>
 			  </tr>
 			</table>
+					<form action="/book/list">
+						<input type="submit" value="一覧画面に戻る">
+					</form>			
 		</div>
 	</div>
 </div>
