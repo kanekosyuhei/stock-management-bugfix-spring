@@ -68,10 +68,18 @@ public class MemberController {
 			return "/member/form";
 		}
 		
-		Member member = new Member();
-		BeanUtils.copyProperties(form, member);
-		memberService.save(member);
-		return "redirect:/book/list";
+		try {
+			
+			Member member = new Member();
+			BeanUtils.copyProperties(form, member);
+			memberService.save(member);
+			return "redirect:/book/list";
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("duplicate_password", "既に登録されているメールアドレスです");
+			return "/member/form";
+		}
 	}
 	
 }

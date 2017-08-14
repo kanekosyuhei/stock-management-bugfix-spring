@@ -21,6 +21,7 @@
 			      	メールアドレス
 			    </th>
 			    <td>
+			    	<div style="color:red;"><c:out value="${duplicate_password}"/></div>
 			    	<form:errors path="mailAddress" cssStyle="color:red" element="div"/>
 			    	<form:input path="mailAddress" placeholder="Email"/>
 			    </td>
