@@ -52,10 +52,14 @@ public class MemberController {
 	 * @return ログイン画面
 	 */
 	@RequestMapping(value = "create")
-	public String create(@Validated MemberForm form, 
-			BindingResult result, Model model) {
+	public String create(@Validated MemberForm form,BindingResult result, Model model) {
 		
 		if (result.hasErrors()){
+			return "/member/form";
+		}
+		
+		if (!(form.getCheck_password().equals(form.getPassword()))){
+			model.addAttribute("password_check_error", "パスワードが確認用と異なります");
 			return "/member/form";
 		}
 		

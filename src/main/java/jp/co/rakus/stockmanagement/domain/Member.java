@@ -13,6 +13,7 @@ public class Member {
 	private String mailAddress;
 	/** パスワード */
 	private String password;
+	
 	public Member() {}
 	public Member(Integer id, String name, String mailAddress, String password) {
 		super();
