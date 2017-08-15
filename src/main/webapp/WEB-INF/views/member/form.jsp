@@ -31,7 +31,7 @@
 			    </th>
 			    <td>
 			    	<form:errors path="password" cssStyle="color:red" element="div"/>
-			    	<form:errors path="check_password" cssStyle="color:red" element="div"/>
+			    	<form:errors path="checkPassword" cssStyle="color:red" element="div"/>
 			    	<form:password path="password" placeholder="Password"/>
 			    </td>
 			  </tr>
@@ -40,8 +40,8 @@
 			     	 確認用パスワード（上と同じパスワードを入力してください）
 			    </th>
 			    <td>
-			    	<form:errors path="check_password" cssStyle="color:red" element="div"/>
-			    	<form:password path="check_password" placeholder="CheckPassword"/>
+			    	<form:errors path="checkPassword" cssStyle="color:red" element="div"/>
+			    	<form:password path="checkPassword" placeholder="CheckPassword"/>
 			    </td>
 			  </tr>
 			  <tr>
