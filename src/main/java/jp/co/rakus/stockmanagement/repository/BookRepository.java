@@ -15,7 +15,7 @@ import jp.co.rakus.stockmanagement.domain.Book;
 
 /**
  * booksテーブル操作用のリポジトリクラス.
- * @author igamasayuki
+ * @author kanekoshuhei
  */
 @Repository
 public class BookRepository {

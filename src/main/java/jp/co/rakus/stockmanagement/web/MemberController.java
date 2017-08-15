@@ -16,7 +16,7 @@ import jp.co.rakus.stockmanagement.service.MemberService;
 
 /**
  * メンバー関連処理を行うコントローラー.
- * @author igamasayuki
+ * @author kanekoshuhei
  *
  */
 @Controller
@@ -61,7 +61,7 @@ public class MemberController {
 		
 		if (!(form.getCheck_password().equals(form.getPassword()))){
 			
-			result.rejectValue("check_password", null , "パスワードが確認用と異なります");
+			result.rejectValue("password", null , "パスワードが確認用と異なります");
 			return "/member/form";
 		}
 		
@@ -74,7 +74,7 @@ public class MemberController {
 			
 		} catch (DuplicateKeyException e) {
 			e.printStackTrace();
-			result.rejectValue("duplicate_address", null , "既に登録されているメールアドレスです");
+			result.rejectValue("mailAddress", null , "既に登録されているメールアドレスです");
 			return "/member/form";
 		}
 	}

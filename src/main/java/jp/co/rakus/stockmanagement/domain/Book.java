@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * 書籍情報を保持するエンティティ.
- * @author rakus
+ * @author kanekoshuhei
  * 
  */
 public class Book {

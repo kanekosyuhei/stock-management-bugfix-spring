@@ -9,7 +9,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 /**
  * ログアウト関連処理を行うコントローラー.
- * @author igamasayuki
+ * @author kanekoshuhei
  *
  */
 @Controller

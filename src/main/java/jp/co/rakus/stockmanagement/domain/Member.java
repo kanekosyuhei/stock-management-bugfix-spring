@@ -2,7 +2,7 @@ package jp.co.rakus.stockmanagement.domain;
 
 /**
  * メンバー情報を保持するエンティティ.
- * @author rakus
+ * @author kanekoshuhei
  */
 public class Member {
 	/** id(主キー) */

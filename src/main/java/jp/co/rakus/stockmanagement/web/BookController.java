@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * 書籍関連処理を行うコントローラー.
- * @author igamasayuki
+ * @author kanekoshuhei
  *
  */
 @Controller

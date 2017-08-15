@@ -4,7 +4,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * ログイン関連のリクエストパラメータが入るフォーム.
- * @author igamasayuki
+ * @author kanekoshuhei
  *
  */
 public class LoginForm {

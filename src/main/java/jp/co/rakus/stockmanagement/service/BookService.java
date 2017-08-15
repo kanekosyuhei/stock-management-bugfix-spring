@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * 書籍関連サービスクラス.
- * @author igamasayuki
+ * @author kanekoshuhei
  *
  */
 @Service

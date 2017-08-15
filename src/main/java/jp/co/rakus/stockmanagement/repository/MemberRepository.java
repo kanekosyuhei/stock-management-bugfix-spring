@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 
 /**
  * membersテーブル操作用のリポジトリクラス.
- * @author igamasayuki
+ * @author kanekoshuhei
  */
 @Repository
 public class MemberRepository {

@@ -4,7 +4,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * 書籍関連のリクエストパラメータが入るフォーム.
- * @author igamasayuki
+ * @author kanekoshuhei
  *
  */
 public class BookForm {

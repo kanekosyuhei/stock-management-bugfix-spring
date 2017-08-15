@@ -21,7 +21,6 @@
 			      	メールアドレス
 			    </th>
 			    <td>
-				    <form:errors path="duplicate_address" cssStyle="color:red" element="div"/>
 			    	<form:errors path="mailAddress" cssStyle="color:red" element="div"/>
 			    	<form:input path="mailAddress" placeholder="Email"/>
 			    </td>

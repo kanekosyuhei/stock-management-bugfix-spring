@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * メンバー関連サービスクラス.
- * @author igamasayuki
+ * @author kanekoshuhei
  *
  */
 @Service

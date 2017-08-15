@@ -16,7 +16,7 @@ import jp.co.rakus.stockmanagement.service.MemberService;
 
 /**
  * ログイン関連処理を行うコントローラー.
- * @author igamasayuki
+ * @author kanekoshuhei
  *
  */
 @Controller
