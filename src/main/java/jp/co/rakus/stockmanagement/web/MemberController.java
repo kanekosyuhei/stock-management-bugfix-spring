@@ -2,6 +2,7 @@ package jp.co.rakus.stockmanagement.web;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -59,7 +60,8 @@ public class MemberController {
 		}
 		
 		if (!(form.getCheck_password().equals(form.getPassword()))){
-			model.addAttribute("password_check_error", "パスワードが確認用と異なります");
+			
+			result.rejectValue("check_password", null , "パスワードが確認用と異なります");
 			return "/member/form";
 		}
 		
@@ -70,9 +72,9 @@ public class MemberController {
 			memberService.save(member);
 			return "redirect:/";
 			
-		} catch (Exception e) {
+		} catch (DuplicateKeyException e) {
 			e.printStackTrace();
-			model.addAttribute("duplicate_password", "既に登録されているメールアドレスです");
+			result.rejectValue("duplicate_address", null , "既に登録されているメールアドレスです");
 			return "/member/form";
 		}
 	}

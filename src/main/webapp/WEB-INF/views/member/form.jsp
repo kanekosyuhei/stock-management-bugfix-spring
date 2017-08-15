@@ -21,7 +21,7 @@
 			      	メールアドレス
 			    </th>
 			    <td>
-			    	<div style="color:red;"><c:out value="${duplicate_password}"/></div>
+				    <form:errors path="duplicate_address" cssStyle="color:red" element="div"/>
 			    	<form:errors path="mailAddress" cssStyle="color:red" element="div"/>
 			    	<form:input path="mailAddress" placeholder="Email"/>
 			    </td>
@@ -31,8 +31,8 @@
 			     	 パスワード
 			    </th>
 			    <td>
-				    <div style="color:red;"><c:out value="${password_check_error}"/></div>
 			    	<form:errors path="password" cssStyle="color:red" element="div"/>
+			    	<form:errors path="check_password" cssStyle="color:red" element="div"/>
 			    	<form:password path="password" placeholder="Password"/>
 			    </td>
 			  </tr>
@@ -41,7 +41,6 @@
 			     	 確認用パスワード（上と同じパスワードを入力してください）
 			    </th>
 			    <td>
-			    	<div style="color:red;"><c:out value="${password_check_error}"/></div>
 			    	<form:errors path="check_password" cssStyle="color:red" element="div"/>
 			    	<form:password path="check_password" placeholder="CheckPassword"/>
 			    </td>

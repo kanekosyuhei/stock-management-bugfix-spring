@@ -14,6 +14,8 @@ public class MemberForm {
 	/** メールアドレス */
 	@NotBlank(message = "値を入力してください")
 	private String mailAddress;
+	/** 重複チェックアドレス*/
+	private String duplicate_address;
 	/** パスワード */
 	@NotBlank(message = "値を入力してください")
 	private String password;
@@ -44,5 +46,11 @@ public class MemberForm {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getDuplicate_address() {
+		return duplicate_address;
+	}
+	public void setDuplicate_address(String duplicate_address) {
+		this.duplicate_address = duplicate_address;
 	}
 }
