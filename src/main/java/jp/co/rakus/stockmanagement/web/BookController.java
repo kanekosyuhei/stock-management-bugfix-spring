@@ -2,9 +2,7 @@ package jp.co.rakus.stockmanagement.web;
 
 import java.util.List;
 
-import jp.co.rakus.stockmanagement.domain.Book;
-import jp.co.rakus.stockmanagement.service.BookService;
-
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +12,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import jp.co.rakus.stockmanagement.domain.Book;
+import jp.co.rakus.stockmanagement.service.BookService;
 
 /**
  * 書籍関連処理を行うコントローラー.
@@ -78,6 +79,36 @@ public class BookController {
 		book.setStock(form.getStock());
 		bookService.update(book);
 		return list(model);
+	}
+	
+	/**
+	 * 書籍登録画面を表示します.
+	 * @param model モデル
+	 * @return 書籍登録画面
+	 */
+	@RequestMapping(value = "form")
+	public String form(Model model) {
+		return "book/form";
+	}
+	
+	/**
+	 * 書籍追加を行います.
+	 * @param form フォーム
+	 * @param result リザルト情報
+	 * @param model　モデル
+	 * @return　書籍リスト画面
+	 */
+	@RequestMapping(value = "regist")
+	public String regist(@Validated BookForm form, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			return form(model);
+		}
+		
+		Book book = new Book();
+		form.setId(bookService.getNextRegistId());
+		BeanUtils.copyProperties(form, book);
+		bookService.regist(book);
+		return "book/list";
 	}
 
 }

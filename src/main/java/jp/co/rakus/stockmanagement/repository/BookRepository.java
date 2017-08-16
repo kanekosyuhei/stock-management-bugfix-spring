@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -15,6 +16,7 @@ import jp.co.rakus.stockmanagement.domain.Book;
 
 /**
  * booksテーブル操作用のリポジトリクラス.
+ * 
  * @author kanekoshuhei
  */
 @Repository
@@ -35,35 +37,62 @@ public class BookRepository {
 		Integer stock = rs.getInt("stock");
 		return new Book(id, name, author, publisher, price, isbncode, saledate, explanation, image, stock);
 	};
-	
+
 	@Autowired
 	private NamedParameterJdbcTemplate jdbcTemplate;
-	
+
 	public List<Book> findAll() {
 		List<Book> books = jdbcTemplate.query(
-				"SELECT id,name,author,publisher,price,isbncode,saledate,explanation,image,stock FROM books ORDER BY saledate", 
+				"SELECT id,name,author,publisher,price,isbncode,saledate,explanation,image,stock FROM books ORDER BY saledate",
 				BOOK_ROW_MAPPER);
 		return books;
 	}
-	
+
 	public Book findOne(Integer id) {
-		SqlParameterSource param = new MapSqlParameterSource()
-				.addValue("id",id);
+		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		Book book = jdbcTemplate.queryForObject(
-				"SELECT id,name,author,publisher,price,isbncode,saledate,explanation,image,stock FROM books WHERE id=:id", 
-				param, 
-				BOOK_ROW_MAPPER);
+				"SELECT id,name,author,publisher,price,isbncode,saledate,explanation,image,stock FROM books WHERE id=:id",
+				param, BOOK_ROW_MAPPER);
 		return book;
 	}
-	
+
 	public Book update(Book book) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(book);
 		if (book.getId() == null) {
 			throw new NullPointerException();
-		} 
-		jdbcTemplate.update(
-				"UPDATE books SET stock=:stock WHERE id=:id",
-				param);
+		}
+		jdbcTemplate.update("UPDATE books SET stock=:stock WHERE id=:id", param);
 		return book;
+	}
+
+	public Book insert(Book book) {
+
+		SqlParameterSource param = new BeanPropertySqlParameterSource(book);
+		if (book.getId() == null) {
+			throw new NullPointerException();
+		}
+		jdbcTemplate.update(
+				"INSERT books (id,name,author,publisher,price,isbncode,saledate,explanation,image,stock) "
+						+ "VALUES (:id,:name,:author,:publisher,:price,:isbncode,:saledate,:explanation,:image,:stock)",
+				param);
+
+		return book;
+	}
+
+	/**
+	 * 最大IDを取得するメソッド.
+	 * @return 最大ID
+	 */
+	public Integer getMaxId() {
+		try {
+
+			Integer maxId = jdbcTemplate.queryForObject("SELECT MAX(id) FROM books",new MapSqlParameterSource(),Integer.class);
+
+			return maxId;
+			
+		} catch (DataAccessException e) {
+			return null;
+		}
+
 	}
 }

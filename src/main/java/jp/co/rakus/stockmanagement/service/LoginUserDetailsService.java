@@ -1,6 +1,11 @@
 package jp.co.rakus.stockmanagement.service;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,7 +27,12 @@ public class LoginUserDetailsService implements UserDetailsService{
 		if(member == null){
 			throw new UsernameNotFoundException("リクエストされたユーザーは見つかりません");
 		}
-		return new LoginUserDetails(member);
+		
+		// 権限付与の例
+		Collection<GrantedAuthority> authorityList = new ArrayList<>();
+		authorityList.add(new SimpleGrantedAuthority("ROLE_MEMBER")); // ユーザ権限付与
+		
+		return new LoginUserDetails(member,authorityList);
 	}
 	
 }

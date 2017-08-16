@@ -71,7 +71,7 @@ public class MemberController {
 		try {
 			
 			Member member = new Member();
-			form.setMailAddress(memberService.encode(form.getPassword()));
+			form.setPassword(memberService.encode(form.getPassword()));
 			BeanUtils.copyProperties(form, member);
 			memberService.save(member);
 			return "redirect:/";
