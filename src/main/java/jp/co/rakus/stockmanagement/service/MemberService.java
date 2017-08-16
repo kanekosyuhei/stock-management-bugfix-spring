@@ -4,6 +4,7 @@ import jp.co.rakus.stockmanagement.domain.Member;
 import jp.co.rakus.stockmanagement.repository.MemberRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,6 +15,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class MemberService {
 
+	@Autowired
+    private PasswordEncoder passwordEncoder;
+	
 	@Autowired
 	MemberRepository memberRepository;
 	
@@ -40,4 +44,10 @@ public class MemberService {
 //	public void delete(Integer id){
 //		memberRepository.delete(id);
 //	}
+	
+	public String encode(String password){
+		String encodePassword = passwordEncoder.encode(password);
+		return encodePassword;
+	}	
+	
 }

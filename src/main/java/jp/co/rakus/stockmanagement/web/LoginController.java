@@ -22,13 +22,13 @@ import jp.co.rakus.stockmanagement.service.MemberService;
 @Controller
 @RequestMapping("/")
 public class LoginController {
-
+			
 	@Autowired
 	private HttpSession session;
 	
 	@Autowired
 	private MemberService memberService;
-
+		
 	/**
 	 * フォームを初期化します.
 	 * @return フォーム
@@ -43,7 +43,12 @@ public class LoginController {
 	 * @return ログイン画面
 	 */
 	@RequestMapping
-	public String index() {
+	public String index(boolean error,Model model) {
+		
+		if(error == true){
+			model.addAttribute("error","メールアドレスまたはパスワードが違います。");
+		}
+		
 		return "loginForm";
 	}
 	
@@ -58,15 +63,17 @@ public class LoginController {
 	public String login(@Validated LoginForm form,
 			BindingResult result) {
 		if (result.hasErrors()){
-			return index();
+			return index(true,null);
 		}
 		String mailAddress = form.getMailAddress();
 		String password = form.getPassword();
-		Member member = memberService.findOneByMailAddressAndPassword(mailAddress, password);
+		
+		Member member = memberService.findOneByMailAddressAndPassword(mailAddress,password);
+		
 		if (member == null) {
 			ObjectError error = new ObjectError("loginerror", "メールアドレスまたはパスワードが違います。");
             result.addError(error);
-			return index();
+			return index(true,null);
 		}
 		session.setAttribute("member", member);
 		return "redirect:/book/list";

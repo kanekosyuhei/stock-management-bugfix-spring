@@ -2,7 +2,10 @@ package jp.co.rakus.stockmanagement.web;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -24,9 +27,10 @@ import jp.co.rakus.stockmanagement.service.MemberService;
 @Transactional
 public class MemberController {
 
+	
 	@Autowired
 	private MemberService memberService;
-
+	
 	/**
 	 * メンバーフォームを初期化します.
 	 * @return フォーム
@@ -59,15 +63,15 @@ public class MemberController {
 			return "/member/form";
 		}
 		
-		if (!(form.getCheckPassword().equals(form.getPassword()))){
-			
+		if (!(form.getCheckPassword().equals(form.getPassword()))){	
 			result.rejectValue("password", null , "パスワードが確認用と異なります");
 			return "/member/form";
 		}
-		
+
 		try {
 			
 			Member member = new Member();
+			form.setMailAddress(memberService.encode(form.getPassword()));
 			BeanUtils.copyProperties(form, member);
 			memberService.save(member);
 			return "redirect:/";
